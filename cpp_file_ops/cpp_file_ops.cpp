@@ -57,6 +57,7 @@ void loadWorkers()
 	ifstream wdata("database.wdb");
 	if (!wdata.is_open())
 	{
+		printf("Could not open file!\n");
 		return;
 	}
 
@@ -64,18 +65,17 @@ void loadWorkers()
 
 	string fdata = "";
 	string cline = "";
+	int rw = 0;
+	string word1 = "";
+	string word2 = "";
+	worker cw = { "","","",0 };
 
 	while (getline(wdata, cline))
 	{
 		fdata += cline;
 	}
 
-	int l = fdata.length();
-
-	int rw=0;
-	string word1 = "";
-	string word2 = "";
-	worker cw = { "","","",0 };
+	int l = fdata.length();	
 	   
 	for (int i = 0; i < l; i++)
 	{
@@ -192,8 +192,6 @@ int main()
 		}
 	
 	}
-
-
 
 	system("pause");
 }
