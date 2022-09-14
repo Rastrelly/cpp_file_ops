@@ -17,16 +17,51 @@ struct worker
 //our database
 vector <worker> staff = {};
 
-//adds a worker to database
+//makes worker structure zeroed out to default state
+void nullWorker(worker &wn)
+{
+	wn = {"","","",0};
+}
+
+//directly adds a worker to database
 void addWorker(worker wrk)
 {
 	staff.push_back(wrk);
 }
 
-//removes worker from database by id
+//handles adding a worker from menu
+void addWorkerProc()
+{
+	string req;
+	string name;
+	string surname;
+	string job;
+	int age;
+	printf("Input Name:\n");
+	getline(cin, name);
+	printf("Input Surname:\n");
+	getline(cin, surname);
+	printf("Input Job Position:\n");
+	getline(cin, job);
+	printf("Input Age:\n");
+	getline(cin, req);
+	age = atoi(req.c_str());
+	addWorker({ name,surname,job,age });
+}
+
+//directly removes worker from database by id
 void removeWorker(int id)
 {
 	staff.erase(staff.begin()+id);
+}
+
+//handles worker removal via call from main menu
+void removeWorkerProc()
+{
+	string req;
+	printf("Input ID:\n");
+	getline(cin, req);
+	removeWorker(atoi(req.c_str()));
 }
 
 //prints out entire database
@@ -75,7 +110,8 @@ void loadWorkers()
 	int rw = 0;
 	string word1 = "";
 	string word2 = "";
-	worker cw = { "","","",0 };
+	worker cw;
+	nullWorker(cw);
 
 	while (getline(wdata, cline))
 	{
@@ -88,7 +124,7 @@ void loadWorkers()
 	{
 		if (fdata[i] == '#')
 		{
-			cw = { "","","",0 };
+			nullWorker(cw);
 		} 
 		else if (fdata[i] == '@')
 		{
@@ -148,6 +184,7 @@ int main()
 		string resp = "";
 		getline(cin, resp);
 		int r = atoi(resp.c_str());
+
 		switch (r)
 		{
 		case 0:
@@ -157,27 +194,12 @@ int main()
 		}
 		case 1:
 		{
-			string name;
-			string surname;
-			string job;
-			int age;
-			printf("Input Name:\n");
-			getline(cin, name);
-			printf("Input Surname:\n");
-			getline(cin, surname);
-			printf("Input Job Position:\n");
-			getline(cin, job);
-			printf("Input Age:\n");
-			getline(cin, resp);
-			age = atoi(resp.c_str());
-			addWorker({name,surname,job,age});
+			addWorkerProc();
 			break;
 		}
 		case 2:
 		{
-			printf("Input ID:\n");
-			getline(cin, resp);
-			removeWorker(atoi(resp.c_str()));
+			removeWorkerProc();
 			break;
 		}
 		case 3:
