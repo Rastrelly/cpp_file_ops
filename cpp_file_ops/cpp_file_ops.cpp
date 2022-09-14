@@ -18,8 +18,6 @@ struct worker
 vector <worker> staff = {};
 
 //Forward declarations of functions
-
-
 void nullWorker(worker &wn);
 void addWorker(worker wrk);
 void addWorkerProc();
