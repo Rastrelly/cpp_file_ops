@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//singular structure
 struct worker
 {
 	string name;
@@ -13,18 +14,22 @@ struct worker
 	int age;
 };
 
+//our database
 vector <worker> staff = {};
 
+//adds a worker to database
 void addWorker(worker wrk)
 {
 	staff.push_back(wrk);
 }
 
+//removes worker from database by id
 void removeWorker(int id)
 {
 	staff.erase(staff.begin()+id);
 }
 
+//prints out entire database
 void printWorkers()
 {
 	int i = 0;
@@ -37,6 +42,7 @@ void printWorkers()
 	}
 }
 
+//saves database to file
 void saveWorkers()
 {
 	ofstream wdata("database.wdb");
@@ -52,6 +58,7 @@ void saveWorkers()
 	cout << "Database saved\n";
 }
 
+//loads database from file
 void loadWorkers()
 {
 	ifstream wdata("database.wdb");
