@@ -218,6 +218,12 @@ int main()
 			break;
 		}
 
+		default:
+		{
+			printf("Unknown command.\n");
+			break;
+		}
+
 		}
 	
 	}
